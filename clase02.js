@@ -13,7 +13,6 @@ class Usuario {
     addMascota(...mascotas) {
         console.log(`ADD MASCOTA: \nAgregando mascota: ${mascotas}`);
         return this.mascotas.push(mascotas), console.log(`Mascotas actuales: ${this.mascotas} \n_________________________________\n`);
-        console.log(`Mascotas actuales: ${this.mascotas} \n_________________________________\n`);
     }
 
     //contar mascotas
@@ -26,10 +25,10 @@ class Usuario {
     }
     //retornar libros
     getBookNames() {
-        return console.log(`GET BOOK NAMES: \nLibros: ${this.libros.map(libro => `libro= ${libro.nombre} \n`)} \n_________________________________\n`);
+        return console.log(`GET BOOK NAMES: \nLibros: \n ${this.libros.map(libro => `libro: ${libro.nombre} \n`)} \n_________________________________\n`);
     }
 }
-const persona = new Usuario('Juan', 'Perez', ['El señor de los anillos', 'El señor de los anillos 2'], ['Perro', 'Gato']);
+const persona = new Usuario('Juan', 'Perez', [{ nombre: 'El señor de los anillos', autor: 'J.R.R. Tolkien' }], ['Perro', 'Gato']);
 
 
 
@@ -37,6 +36,5 @@ persona.getFullname();
 persona.addMascota('Caballo', "leon");
 persona.CountMascotas();
 persona.addBook('El arte de ensoñar', 'Carlos Castaneda')
-persona.addBook('el señor de los anillos', 'J.R.R. Tolkien')
+persona.addBook('Libro 2', 'autor 2')
 persona.getBookNames();
-console.log(persona.libros) //agregue este console.log para ver porque no se muestra el libro en la funcion getBookNames(). es porque los otros libros no tienen valor libros.nombre
