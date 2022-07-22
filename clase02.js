@@ -11,13 +11,14 @@ class Usuario {
     }
     // Agregar mascota o mascotas
     addMascota(...mascotas) {
-        console.log(`ADD MASCOTA: \nAgregando mascota: ${mascotas}`);
+        console.log(`ADD MASCOTA: \nAgregando mascota/s: ${mascotas}`);
+        console.log(`mascotas antes del cambio: ${this.mascotas}`);
         return this.mascotas.push(mascotas), console.log(`Mascotas actuales: ${this.mascotas} \n_________________________________\n`);
     }
 
     //contar mascotas
     CountMascotas() {
-        return console.log(`COUNT MASCOTAS: \nMascotas: ${this.mascotas.length} \n_________________________________\n`);
+        return console.log(`COUNT MASCOTAS: \nMascotas: ${this.mascotas.length + 1} \n_________________________________\n`);
     }
     //agregar libro
     addBook(nombre, autor) {
