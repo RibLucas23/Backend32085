@@ -1,22 +1,23 @@
 [
   {
-    "nombre": "teclado",
-    "precio": 880,
+    "ruta": {
+      "nombre": "teclado",
+      "precio": 880
+    },
     "id": 1
   },
   {
-    "nombre": "monitor",
-    "precio": 700,
+    "ruta": {
+      "nombre": "monitor",
+      "precio": 700
+    },
     "id": 2
   },
   {
-    "nombre": "mouse",
-    "precio": 120,
+    "ruta": {
+      "nombre": "mouse",
+      "precio": 120
+    },
     "id": 3
-  },
-  {
-    "nombre": "guitarra",
-    "precio": 1880,
-    "id": 4
   }
 ]
