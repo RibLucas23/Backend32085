@@ -1,5 +1,5 @@
 const fs = require('fs/promises');
-const ruta = './clase04.json'
+// const ruta = './clase04.json'
 
 class Contenedor {
     constructor(ruta) {
@@ -80,11 +80,11 @@ class Contenedor {
 
 }
 async function main() {
-    const contenedor = new Contenedor(ruta)
-    await contenedor.guardar(new Contenedor({ nombre: 'teclado', precio: 880 }))
-    await contenedor.guardar(new Contenedor({ nombre: 'monitor', precio: 700 }))
-    await contenedor.guardar(new Contenedor({ nombre: 'mouse', precio: 120 }))
-    await contenedor.guardar(new Contenedor({ nombre: 'guitarra', precio: 188 }))
+    const contenedor = new Contenedor('./clase04.json')
+    await contenedor.guardar({ nombre: 'teclado', precio: 880 })
+    await contenedor.guardar({ nombre: 'monitor', precio: 700 })
+    await contenedor.guardar({ nombre: 'mouse', precio: 120 })
+    await contenedor.guardar({ nombre: 'guitarra', precio: 188 })
     console.log(await contenedor.getAll())
     await contenedor.getById(1)
     await contenedor.deleteById(4)

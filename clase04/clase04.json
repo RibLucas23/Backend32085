@@ -1,23 +1,17 @@
 [
   {
-    "ruta": {
-      "nombre": "teclado",
-      "precio": 880
-    },
+    "nombre": "teclado",
+    "precio": 880,
     "id": 1
   },
   {
-    "ruta": {
-      "nombre": "monitor",
-      "precio": 700
-    },
+    "nombre": "monitor",
+    "precio": 700,
     "id": 2
   },
   {
-    "ruta": {
-      "nombre": "mouse",
-      "precio": 120
-    },
+    "nombre": "mouse",
+    "precio": 120,
     "id": 3
   }
 ]
