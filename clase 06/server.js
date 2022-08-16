@@ -1,19 +1,23 @@
 let { request, response } = require('express');
+const fs = require('fs/promises');
+
 let express = require('express');
 let Productos = require('./src/productos');
 let app = express();
-const productos = new Productos();
+const productos = new Productos('./src/productos.json');
 
 console.log(productos);
 app.get('/', (request, response) => {
     response.send('Hola mundo');
 });
 
-app.get('/productos', (request, response) => {
-    response.send(productos.traerProductos());
+app.get('/productos', async (request, response) => {
+    const productosAll = await productos.traerProductos();
+    response.send(productosAll);
 });
-app.get('/productosRandom', (request, response) => {
-    response.send(productos.productoRandom());
+app.get('/productosRandom', async (request, response) => {
+    const objetoRandom = await productos.productoRandom();
+    response.send(objetoRandom);
 });
 
 
