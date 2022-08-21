@@ -10,9 +10,8 @@ class ProductosClass {
 
     async traerProductos() {
         try {
-            // return DB_PRODUCTOS
-            const DB_PRODUCTOS = await fs.readFile(this.ruta, 'utf-8')
-            return JSON.parse(DB_PRODUCTOS)
+            return DB_PRODUCTOS
+            // return JSON.parse(objetos)
         } catch (error) {
             console.log(error)
             return []

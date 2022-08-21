@@ -3,9 +3,9 @@ let { request, response, Router, application } = require('express');
 let express = require('express');
 const morgan = require('morgan');
 
-// const fs = require('fs/promises');
-// let Productos = require('./src/productos');
-// const objetos = new Productos('./src/productos.json');
+const fs = require('fs/promises');
+let Productos = require('./src/productos');
+const objetos = new Productos('./src/productos.json');
 
 //Instancia de Server
 const app = express();
