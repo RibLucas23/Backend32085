@@ -4,7 +4,7 @@ const routerProductos = express.Router();
 
 
 const ProductosClass = require('../productos');
-const objetos = new ProductosClass('../productos.json');
+const objetos = new ProductosClass('./src/productos.json');
 
 
 // Defino la Base de Datos de Productos
@@ -27,12 +27,8 @@ routerProductos.delete('/:id', async (req, res) => {
 
 
 routerProductos.post('/', async (req, res) => {
-    const DB_PRODUCTOS = await objetos.traerProductos();
-    const producto = req.body;
-    producto.id = DB_PRODUCTOS.length + 1;
-    DB_PRODUCTOS.push(producto);
-    console.log(DB_PRODUCTOS);
-    res.status(201).redirect('/');
+    const DB_PRODUCTOS = await objetos.agregarProducto(req.body);
+    res.status(201).redirect('/api/productos');
 })
 routerProductos.put('/:id', async (req, res) => {
     const producto = await objetos.productoPorId(req.params.id);
