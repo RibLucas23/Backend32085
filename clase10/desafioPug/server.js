@@ -27,11 +27,7 @@ app.get('/', async (req, res) => {
 });
 
 app.post('/productos', async (req, res) => {
-    const DB_PRODUCTOS = await objetos.traerProductos();
-    const producto = req.body;
-    producto.id = DB_PRODUCTOS.length + 1;
-    DB_PRODUCTOS.push(producto);
-    console.log(DB_PRODUCTOS);
+    const DB_PRODUCTOS = await objetos.agregarProducto(req.body);
     res.redirect('/');
 });
 
@@ -45,7 +41,7 @@ app.post('/eliminar', async (req, res) => {
 
 const PORT = 8080;
 const server = app.listen(PORT, () => {
-    console.log(`Server running on port ${server.address().port}`);
+    console.log(`Server running on http://localhost:8080`);
 })
 server.on('error', (err) => {
     console.log(err);

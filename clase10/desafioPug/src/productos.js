@@ -1,6 +1,6 @@
 const fs = require('fs/promises');
 const productosJson = require("./productos.json");
-const DB_PRODUCTOS = productosJson
+// const DB_PRODUCTOS = productosJson
 
 class ProductosClass {
     constructor(ruta) {
@@ -10,8 +10,8 @@ class ProductosClass {
 
     async traerProductos() {
         try {
-            return DB_PRODUCTOS
-            // return JSON.parse(objetos)
+            const DB_PRODUCTOS = await fs.readFile(this.ruta, 'utf-8')
+            return JSON.parse(DB_PRODUCTOS)
         } catch (error) {
             console.log(error)
             return []
@@ -28,6 +28,7 @@ class ProductosClass {
     }
     async productoPorId(id) {
         try {
+            const DB_PRODUCTOS = await fs.readFile(this.ruta, 'utf-8')
             const producto = await DB_PRODUCTOS.find(producto => producto.id == id)
             return producto
         }
@@ -37,9 +38,25 @@ class ProductosClass {
     }
     async eliminarProducto(id) {
         try {
+            const DB_PRODUCTOS = await fs.readFile(this.ruta, 'utf-8')
             const producto = await DB_PRODUCTOS.find(producto => producto.id == id)
             const productoEliminado = await DB_PRODUCTOS.splice(DB_PRODUCTOS.indexOf(producto), 1)
             return productoEliminado
+        }
+        catch (error) {
+            return [error]
+        }
+    }
+    async agregarProducto(producto) {
+        try {
+            const DB_PRODUCTOS = await fs.readFile(this.ruta, 'utf-8')
+            let ultimoProducto = JSON.parse(DB_PRODUCTOS)[JSON.parse(DB_PRODUCTOS).length - 1]
+            producto.id = ultimoProducto.id + 1;
+            let DB_PRODUCTOS_NEW = JSON.parse(DB_PRODUCTOS)
+            DB_PRODUCTOS_NEW.push(producto)
+
+            await fs.writeFile(this.ruta, JSON.stringify(DB_PRODUCTOS_NEW))
+            return producto
         }
         catch (error) {
             return [error]
