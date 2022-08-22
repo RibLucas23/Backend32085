@@ -1,0 +1,31 @@
+<h2 style="color:crimson;">Historial</h2>
+
+<% if(DB_PRODUCTOS.length> 0){ %>
+    <div class="table-responsive">
+        <table class="table table-dark">
+            <tr style="color: yellow;">
+                <th>Title</th>
+                <th>Price</th>
+                <th>Image</th>
+            </tr>
+            <!-- filas -->
+            <% for (const persona of DB_PRODUCTOS) {%>
+                <tr>
+                    <td>
+                        <%=persona.title %>
+                    </td>
+                    <td>
+                        <%=persona.price %>
+                    </td>
+
+                    <td>
+                        <img width="30" src="<%=persona.thumbnail%>" alt="">
+                    </td>
+                </tr>
+                <% } %>
+                    <!-- Fin filas -->
+        </table>
+    </div>
+    <% } else { %>
+        <h3 class="alert alert-danger">No se encontraron dato</h3>
+        <% } %>
