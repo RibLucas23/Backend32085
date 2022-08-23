@@ -18,7 +18,7 @@ app.set('views', './views');
 
 
 /* ---------------------- Rutas ----------------------*/
-app.use('/api/productos', routerProductos);
+app.use('/productos', routerProductos);
 
 app.get('/', (req, res) => {
     res.render('index')
