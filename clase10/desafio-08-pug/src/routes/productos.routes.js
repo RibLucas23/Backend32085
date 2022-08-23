@@ -12,7 +12,7 @@ const objetos = new ProductosClass('./src/productos.json');
 
 routerProductos.get('/', async (req, res) => {
     const DB_PRODUCTOS = await objetos.traerProductos();
-    res.status(200).render('index', { DB_PRODUCTOS });
+    res.status(200).render('productos', { DB_PRODUCTOS });
 })
 
 routerProductos.get('/:id', async (req, res) => {

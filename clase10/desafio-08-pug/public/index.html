@@ -4,19 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formularios de Ingreso</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-
-    <h2>Ingrese Producto</h2>
-    <form action="/api/productos" method="POST">
-        <br>Nombre producto: <input type="text" name="title">
-        <br>price: <input type="text" name="price">
-        <!-- <br>Photo: <input type="file" name="miArchivo"> -->
-        <button type="submit">Enviar</button>
-    </form>
-
+    <nav>
+        <ul>
+            <li>
+                <a href="/"> Home</a>
+            </li>
+            <li>
+                <a href="/api/productos"> Productos</a>
+            </li>
+        </ul>
+    </nav>
 </body>
 
 </html>

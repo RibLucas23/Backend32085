@@ -20,6 +20,12 @@ app.set('views', './views');
 /* ---------------------- Rutas ----------------------*/
 app.use('/api/productos', routerProductos);
 
+app.get('/', (req, res) => {
+    res.render('index')
+});
+
+
+
 
 //Errores GLobales
 app.use(function (err, req, res, next) {
