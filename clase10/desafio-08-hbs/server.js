@@ -27,7 +27,7 @@ app.set('views', './views');
 
 
 /* ---------------------- Rutas ----------------------*/
-app.use('/api/productos', routerProductos);
+app.use('/productos', routerProductos);
 
 
 //Errores GLobales
