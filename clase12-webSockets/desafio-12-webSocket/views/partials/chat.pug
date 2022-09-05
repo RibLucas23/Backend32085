@@ -1,0 +1,14 @@
+.container.m-5
+  h3 Chat WebSocket!
+  form
+    .form-group
+      label(for='user') Ingrese su Mail:
+      input#user.form-control(type='email' placeholder='email@email.com'   aria-describedby='userComment')
+      small#userComment.form-text.text-muted Mail que se utilizara al enviar mensajes.
+    .form-group
+      label(for='contenidoMensaje') Mensaje:
+      textarea#contenidoMensaje.form-control(rows='3')
+    button.btn.btn-success(onclick='enviarMensaje()') Enviar
+  hr
+  #historial
+    // aqui se renderizan los mensajes recibidos por parte del server

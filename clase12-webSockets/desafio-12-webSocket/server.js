@@ -1,8 +1,13 @@
 /* ---------------------- Modulos ----------------------*/
 let express = require('express');
 const morgan = require('morgan');
+//clases productos vieja
 const ProductosClass = require('./src/productos');
 const objetos = new ProductosClass('./src/productos.json');
+
+//clases productos nueva
+const ProductosClass_webSocket = require('./public/productos')
+// const objetos_webSocket = new ProductosClass_webSocket('./public/productos.json')
 
 const path = require('path');
 const { Server: HttpServer } = require('http');
@@ -36,18 +41,17 @@ const DB_MENSAJES = [
 
 
 
-
 /* ---------------------- Rutas ----------------------*/
 app.use('/productos', routerProductos);
 
-// app.get('/', async (req, res) => {
-//     const DB_PRODUCTOS = await objetos.traerProductos();
-//     res.render('productos', { DB_PRODUCTOS });
-// })
+app.get('/', async (req, res) => {
+    const DB_PRODUCTOS = await objetos.traerProductos();
+    res.render('productos', { DB_PRODUCTOS });
+})
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public', 'index.html'));
-});
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, './public', 'index.html'));
+// });
 
 
 
@@ -62,7 +66,7 @@ app.use((error, req, res, next) => {
 
 
 /* ---------------------- Servidor ----------------------*/
-const server = app.listen(8080, () => {
+const server = httpServer.listen(8080, () => {
     console.log(`Server running on http://localhost:${server.address().port}`);
 });
 
@@ -70,12 +74,38 @@ const server = app.listen(8080, () => {
 /* ---------------------- WebSocket ----------------------*/
 
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     console.log(`Nuevo cliente conectado! ${socket.id}`);
-    socket.emit('from-server-mensajes', { DB_MENSAJES });
+    const objetos_webSocket = new ProductosClass_webSocket('./public/productos.json')
 
+    //chat 
+
+    socket.emit('from-server-mensajes', { DB_MENSAJES });
     socket.on('from-client-mensaje', mensaje => {
         DB_MENSAJES.push(mensaje);
         io.sockets.emit('from-server-mensajes', { DB_MENSAJES });
     });
+    //Productos
+
+    const DB_PRODUCTOS = await objetos_webSocket.traerProductos()
+    io.sockets.emit('from-server-productos', DB_PRODUCTOS)
+
+
+
+    socket.on("from-client-producto", async producto => {
+
+        await objetos_webSocket.agregarProducto(producto)
+        console.log(DB_PRODUCTOS)
+        io.sockets.emit('from-server-productos', await DB_PRODUCTOS)
+    })
+
 })
+
+
+
+// const mensajes = await mensaje.getAll()
+//     io.sockets.emit('from-server-mensajes', mensajes)
+// socket.on('from-client-mensaje', mensaje => {
+//         mensajes.push(mensaje)
+//         io.sockets.emit('from-server-mensajes', mensajes)
+//     })

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios de Ingreso</title>
+</head>
+
+<body>
+
+    <h2>Ingrese Mascota</h2>
+    <form action="/api/mascotas" enctype="multipart/form-data" method="POST">
+        <br>Nombre: <input type="text" name="nombre">
+        <br>Raza: <input type="text" name="raza">
+        <br>Edad: <input type="text" name="edad">
+        <br>Photo: <input type="file" name="miArchivo">
+        <button type="submit">Enviar</button>
+    </form>
+
+</body>
+
+</html>

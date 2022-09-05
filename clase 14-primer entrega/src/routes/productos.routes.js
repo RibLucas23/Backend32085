@@ -12,7 +12,7 @@ const objetos = new ProductosClass('./src/productos.json');
 
 routerProductos.get('/', async (req, res) => {
     const DB_PRODUCTOS = await objetos.traerProductos();
-    res.status(200).render('index', { DB_PRODUCTOS });
+    res.status(200).render('productos', { DB_PRODUCTOS });
 })
 
 routerProductos.get('/:id', async (req, res) => {
@@ -21,8 +21,9 @@ routerProductos.get('/:id', async (req, res) => {
 })
 
 routerProductos.delete('/:id', async (req, res) => {
-    const producto = await objetos.eliminarProducto(req.params.id);
-    res.status(200).json(producto);
+
+    const DB_PRODUCTOS = await objetos.eliminarProducto(req.params.id);
+    res.status(200).json(DB_PRODUCTOS);
 })
 
 
