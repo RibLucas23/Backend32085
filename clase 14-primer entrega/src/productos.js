@@ -13,7 +13,7 @@ class ProductosClass {
             return JSON.parse(DB_PRODUCTOS)
         } catch (error) {
             console.log(error)
-            return []
+            throw new Error(error)
         }
     }
 
@@ -24,14 +24,15 @@ class ProductosClass {
             const objetoRandom = JSON.parse(objetos)[Math.floor(Math.random() * JSON.parse(objetos).length)]
             return objetoRandom
         } catch (error) {
-            return []
+            console.log(error)
+            throw new Error(error)
         }
     }
 
     //TRAE PRODUCTO POR ID
     async productoPorId(id) {
         const DB_PRODUCTOS = await this.traerProductos()
-        console.log(DB_PRODUCTOS)
+        // console.log(DB_PRODUCTOS)
         try {
             const producto = await DB_PRODUCTOS.find(producto => producto.id == id)
             if (producto != undefined) {
@@ -41,7 +42,8 @@ class ProductosClass {
             }
         }
         catch (error) {
-            return [error]
+            console.log(error)
+            throw new Error(error)
         }
     }
 
@@ -59,7 +61,8 @@ class ProductosClass {
             }
         }
         catch (error) {
-            return [error]
+            console.log(error)
+            throw new Error(error)
         }
     }
 
@@ -82,7 +85,8 @@ class ProductosClass {
             return producto
         }
         catch (error) {
-            return [error]
+            console.log(error)
+            throw new Error(error)
         }
     }
 
@@ -93,35 +97,55 @@ class ProductosClass {
             await this.agregarProducto(carrito)
             return carrito
         } catch (error) {
-            return [error]
+            console.log(error)
+            throw new Error(error)
         }
     }
 
     async agregarProductoAlCarro(producto, id) {
         try {
+            //fecha
             let fecha = new Date()
             let fyh = fecha.toLocaleString()
+            //DATABASE CARRITOS
+            const DB_CARRITO_ENTERO = await this.traerProductos()
             const DB_CARRITO = await this.productoPorId(id)
-            console.log(DB_CARRITO)
             let ultimoProducto = DB_CARRITO.productos[DB_CARRITO.productos.length - 1]
-            // console.log(ultimoProducto)
             producto.id = ultimoProducto.id + 1
             producto.fyh = fyh
             producto.codigo = Math.random().toString(36).substr(2, 18)
 
-            console.log(producto)
             DB_CARRITO.productos.push(producto)
-            await fs.writeFile(this.ruta, JSON.stringify(DB_CARRITO))
+            const index = DB_CARRITO_ENTERO.findIndex(carrito => carrito.id == id)
+            DB_CARRITO_ENTERO[index] = DB_CARRITO
+            await fs.writeFile(this.ruta, JSON.stringify(DB_CARRITO_ENTERO))
 
 
             return producto
         }
         catch (error) {
-            return [error]
+            console.log(error)
+            throw new Error(error)
+        }
+    }
+
+
+    async eliminarProdCarro(idCarro, idProducto) {
+        try {
+            const DB_CARRITO = await this.productoPorId(idCarro)
+            const DB_CARRITO_ENTERO = await this.traerProductos()
+            const carritoActualizado = DB_CARRITO.productos.filter(obj => obj.id != idProducto)
+            console.log(carritoActualizado)
+
+            const index = DB_CARRITO_ENTERO.findIndex(carrito => carrito.id == idCarro)
+            DB_CARRITO_ENTERO[index].productos = carritoActualizado
+            await fs.writeFile(this.ruta, JSON.stringify(DB_CARRITO_ENTERO))
+
+        } catch (error) {
+
         }
 
     }
-
 
 }
 
