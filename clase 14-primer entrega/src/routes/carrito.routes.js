@@ -27,8 +27,9 @@ routerCarrito.get("/:id/productos", async (req, res) => {
 
 routerCarrito.post("/:id/productos", async (req, res) => {
     const DB_CARRITO = await carrito.productoPorId(req.params.id);
-    DB_CARRITO.productos = await carrito.agregarProducto(req.body)
+    DB_CARRITO.productos = await carrito.agregarProductoAlCarro(req.body, req.params.id)
     res.status(200).json(DB_CARRITO)
+
 })
 
 

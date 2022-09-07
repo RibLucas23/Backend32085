@@ -96,11 +96,39 @@ class ProductosClass {
         }
     }
 
-    // async agregarProductoAlCarro(id, producto) {
-    //     let carrito = await this.productoPorId(id)
-    //     carrito.productos = await this.agregarProducto(producto)
-    //     return carrito
-    // }
+    async agregarProductoAlCarro(producto, id) {
+        try {
+            let fecha = new Date()
+            let fyh = fecha.toLocaleString()
+            const DB_CARRITO = await this.productoPorId(id)
+            console.log(DB_CARRITO)
+            let ultimoProducto = DB_CARRITO.productos[DB_CARRITO.productos.length - 1]
+            // console.log(ultimoProducto)
+            producto.id = ultimoProducto.id + 1
+            producto.fyh = fyh
+            producto.codigo = Math.random().toString(36).substr(2, 18)
+
+            console.log(producto)
+            // DB_CARRITO.productos.push(producto)
+
+
+            // let ultimoProducto = JSON.parse(DB_PRODUCTOS.productos)[JSON.parse(DB_PRODUCTOS).length - 1]
+
+            // DB_PRODUCTOS.producto.id = ultimoProducto.id + 1;
+            // DB_PRODUCTOS.producto.fyh = fyh
+            // DB_PRODUCTOS.producto.codigo = Math.random().toString(36).substr(2, 18)
+
+            // let DB_PRODUCTOS_NEW = JSON.parse(DB_PRODUCTOS)
+            // DB_PRODUCTOS_NEW.push(producto)
+
+            // await fs.writeFile(this.ruta, JSON.stringify(DB_PRODUCTOS_NEW))
+            return producto
+        }
+        catch (error) {
+            return [error]
+        }
+
+    }
 
 
 }
