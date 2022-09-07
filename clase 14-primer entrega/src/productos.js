@@ -31,6 +31,7 @@ class ProductosClass {
     //TRAE PRODUCTO POR ID
     async productoPorId(id) {
         const DB_PRODUCTOS = await this.traerProductos()
+        console.log(DB_PRODUCTOS)
         try {
             const producto = await DB_PRODUCTOS.find(producto => producto.id == id)
             if (producto != undefined) {
@@ -109,19 +110,10 @@ class ProductosClass {
             producto.codigo = Math.random().toString(36).substr(2, 18)
 
             console.log(producto)
-            // DB_CARRITO.productos.push(producto)
+            DB_CARRITO.productos.push(producto)
+            await fs.writeFile(this.ruta, JSON.stringify(DB_CARRITO))
 
 
-            // let ultimoProducto = JSON.parse(DB_PRODUCTOS.productos)[JSON.parse(DB_PRODUCTOS).length - 1]
-
-            // DB_PRODUCTOS.producto.id = ultimoProducto.id + 1;
-            // DB_PRODUCTOS.producto.fyh = fyh
-            // DB_PRODUCTOS.producto.codigo = Math.random().toString(36).substr(2, 18)
-
-            // let DB_PRODUCTOS_NEW = JSON.parse(DB_PRODUCTOS)
-            // DB_PRODUCTOS_NEW.push(producto)
-
-            // await fs.writeFile(this.ruta, JSON.stringify(DB_PRODUCTOS_NEW))
             return producto
         }
         catch (error) {
@@ -132,6 +124,7 @@ class ProductosClass {
 
 
 }
+
 
 
 module.exports = ProductosClass;

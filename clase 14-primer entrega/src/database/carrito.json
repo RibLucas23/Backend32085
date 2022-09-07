@@ -24,6 +24,14 @@
             "price": "9999",
             "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
             "id": 4
+        },
+        {
+            "title": "remera",
+            "price": "2523",
+            "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+            "id": 5,
+            "fyh": "7/9/2022 15:24:51",
+            "codigo": "7himj6hvf25"
         }
     ],
     "id": 2,
