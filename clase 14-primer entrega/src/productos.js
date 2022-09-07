@@ -65,10 +65,15 @@ class ProductosClass {
     //AGREGA UN PRODUCTO
     async agregarProducto(producto) {
         try {
-            console.log("1")
+            let fecha = new Date()
+            let fyh = fecha.toLocaleString()
             const DB_PRODUCTOS = await fs.readFile(this.ruta, 'utf-8')
             let ultimoProducto = JSON.parse(DB_PRODUCTOS)[JSON.parse(DB_PRODUCTOS).length - 1]
+
             producto.id = ultimoProducto.id + 1;
+            producto.fyh = fyh
+            producto.codigo = Math.random().toString(36).substr(2, 18)
+
             let DB_PRODUCTOS_NEW = JSON.parse(DB_PRODUCTOS)
             DB_PRODUCTOS_NEW.push(producto)
 
@@ -79,6 +84,25 @@ class ProductosClass {
             return [error]
         }
     }
+
+    async crearCarrito(carrito) {
+        try {
+
+            carrito.productos = []
+            await this.agregarProducto(carrito)
+            return carrito
+        } catch (error) {
+            return [error]
+        }
+    }
+
+    // async agregarProductoAlCarro(id, producto) {
+    //     let carrito = await this.productoPorId(id)
+    //     carrito.productos = await this.agregarProducto(producto)
+    //     return carrito
+    // }
+
+
 }
 
 

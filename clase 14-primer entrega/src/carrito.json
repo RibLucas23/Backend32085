@@ -3,44 +3,32 @@
         "title": "Escuadra",
         "price": 123.45,
         "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-        "id": 1
+        "id": 1,
+        "stock": 20,
+        "descripcion": "descripcion"
     },
     {
         "title": "Calculadora",
         "price": 234.56,
         "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
-        "id": 2
+        "id": 2,
+        "stock": 20,
+        "descripcion": "descripcion"
     },
     {
         "title": "Globo Terráqueo",
         "price": 345.67,
         "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
-        "id": 3
+        "id": 3,
+        "stock": 20,
+        "descripcion": "descripcion"
     },
     {
         "title": "Escuadra Nueva mucho mas cara",
         "price": "9999",
         "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-        "id": 4
-    },
-    {
-        "title": "asd",
-        "price": "123",
-        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-        "id": 5
-    },
-    {
-        "title": "we",
-        "price": "214",
-        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-        "id": 6
-    },
-    {
-        "title": "asd",
-        "price": "32",
-        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
-        "id": 7,
-        "fyh": "7/9/2022 12:22:23",
-        "codigo": "1eir8xom5my"
+        "id": 4,
+        "stock": 20,
+        "descripcion": "descripcion"
     }
 ]

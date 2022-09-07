@@ -9,6 +9,7 @@ const objetos = new ProductosClass('./src/productos.json');
 //Instancia de Server
 const app = express();
 const routerProductos = require("./src/routes/productos.routes");
+const routerCarrito = require("./src/routes/carrito.routes")
 /* ---------------------- Middlewares ----------------------*/
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,8 +21,12 @@ app.set('view engine', 'pug');
 app.set('views', './views');
 
 
+
+
 /* ---------------------- Rutas ----------------------*/
 app.use('/productos', routerProductos);
+// app.use("/api/carrito", routerCarrito)
+app.use('/api/carrito', routerCarrito)
 
 // app.get('/', (req, res) => {
 //     res.render('index')

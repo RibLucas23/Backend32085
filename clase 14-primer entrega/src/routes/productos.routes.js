@@ -6,6 +6,7 @@ const routerProductos = express.Router();
 const ProductosClass = require('../productos');
 const objetos = new ProductosClass('./src/productos.json');
 
+const admin = true
 
 // Defino la Base de Datos de Productos
 
@@ -20,23 +21,36 @@ routerProductos.get('/:id', async (req, res) => {
     res.status(200).json(producto);
 })
 
-routerProductos.delete('/:id', async (req, res) => {
 
-    const DB_PRODUCTOS = await objetos.eliminarProducto(req.params.id);
-    res.status(200).json(DB_PRODUCTOS);
+
+routerProductos.delete('/:id', async (req, res) => {
+    if (admin) {
+        const DB_PRODUCTOS = await objetos.eliminarProducto(req.params.id);
+        res.status(200).json(DB_PRODUCTOS);
+    } else {
+        console.log("error")
+    }
 })
 
 
 routerProductos.post('/', async (req, res) => {
-    const DB_PRODUCTOS = await objetos.agregarProducto(req.body);
-    res.status(201).redirect('/productos');
+    if (admin) {
+        const DB_PRODUCTOS = await objetos.agregarProducto(req.body);
+        res.status(201).redirect('/productos');
+    } else {
+        console.log("error")
+    }
 })
 routerProductos.put('/:id', async (req, res) => {
-    const producto = await objetos.productoPorId(req.params.id);
-    const productoEditado = req.body;
-    producto.title = productoEditado.title;
-    producto.price = productoEditado.price;
-    res.status(200).json(producto);
+    if (admin) {
+        const producto = await objetos.productoPorId(req.params.id);
+        const productoEditado = req.body;
+        producto.title = productoEditado.title;
+        producto.price = productoEditado.price;
+        res.status(200).json(producto);
+    } else {
+        console.log("error")
+    }
 })
 
 module.exports = routerProductos;
