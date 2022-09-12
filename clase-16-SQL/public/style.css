@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: black;
+
+}
+
+ul {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-around;
+}
+
+ul li {
+    font-size: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.email {
+    color: blue;
+}
+
+.fyh {
+    color: brown;
+}
+
+.texto {
+    font-family: italic;
+    color: green;
+}
