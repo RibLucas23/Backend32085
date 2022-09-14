@@ -3,7 +3,7 @@
         div(class="jumbotron")
             h1(style="color:blue;") Ingrese datos
             br
-            form(action="/productos" method="post")
+            form(action="/api/productos" method="post")
                 div(class="form-group")
                     label(for="title")
                         b Title
@@ -18,6 +18,16 @@
                     label( for="thumbnail")
                     b Image
                     input(id="thumbnail" class="form-control" type="text" name="thumbnail")
+                
+                div(class="form-group")
+                    label( for="stock")
+                    b Stock
+                    input(id="stock" class="form-control" type="text" name="stock")
+
+                div(class="form-group")
+                    label( for="descripcion")
+                    b Descripcion
+                    input(id="descripcion" class="form-control" type="text" name="descripcion")    
                 
                 button(class="btn btn-success mt-3 mb-5") Enviar
             

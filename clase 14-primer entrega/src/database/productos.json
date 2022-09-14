@@ -1,0 +1,52 @@
+[
+    {
+        "title": "probando",
+        "price": "32",
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+        "stock": "23",
+        "descripcion": "algo",
+        "id": 8,
+        "fyh": "14/9/2022 11:52:30",
+        "codigo": "ftqe95qdxcg"
+    },
+    {
+        "title": "Calculadora",
+        "price": "234.56",
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+        "stock": "23",
+        "descripcion": "Calculadora",
+        "id": 9,
+        "fyh": "14/9/2022 11:56:26",
+        "codigo": "nc3xk9fxpkg"
+    },
+    {
+        "title": "Globo Terráqueo",
+        "price": "345.67",
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/globe-earth-geograhy-planet-school-256.png",
+        "stock": "745",
+        "descripcion": "Globo Terráqueo",
+        "id": 10,
+        "fyh": "14/9/2022 11:56:56",
+        "codigo": "2ybnrm270sz"
+    },
+    {
+        "title": "Escuadra",
+        "price": "123.45",
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-256.png",
+        "stock": "10",
+        "descripcion": "Escuadra",
+        "id": 11,
+        "fyh": "14/9/2022 11:57:17",
+        "codigo": "kv1pnmfwaka"
+    },
+    {
+        "title": "nueva calculadora",
+        "price": "213",
+        "thumbnail": "https://cdn3.iconfinder.com/data/icons/education-209/64/calculator-math-tool-school-256.png",
+        "stock": "2",
+        "descripcion": "Calculadora",
+        "id": 12,
+        "fyh": "14/9/2022 12:28:26",
+        "codigo": "wssmhsehnok"
+    }
+]

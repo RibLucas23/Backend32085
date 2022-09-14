@@ -7,7 +7,7 @@ class ProductosClass {
     }
 
     //TRAE TODOS LOS OBJETOS DEL JSON
-    async traerProductos() {
+    async getAll() {
         try {
             const DB_PRODUCTOS = await fs.readFile(this.ruta, 'utf-8')
             return JSON.parse(DB_PRODUCTOS)
@@ -30,8 +30,8 @@ class ProductosClass {
     }
 
     //TRAE PRODUCTO POR ID
-    async productoPorId(id) {
-        const DB_PRODUCTOS = await this.traerProductos()
+    async getById(id) {
+        const DB_PRODUCTOS = await this.getAll()
         // console.log(DB_PRODUCTOS)
         try {
             const producto = await DB_PRODUCTOS.find(producto => producto.id == id)
@@ -39,6 +39,7 @@ class ProductosClass {
                 return producto
             } else {
                 console.log(`No existe el objeto con id: ${id}`)
+                throw new Error(error)
             }
         }
         catch (error) {
@@ -48,12 +49,13 @@ class ProductosClass {
     }
 
     //ELIMINA POR ID
-    async eliminarProducto(id) {
-        const DB_PRODUCTOS = await this.traerProductos()
+    async eliminar(id) {
+        const DB_PRODUCTOS = await this.getAll()
         try {
             const obj = DB_PRODUCTOS.find(obj => obj.id == id)
             if (obj == undefined) {
                 console.log(`No existe el objeto con id ${id}`)
+                throw new Error(error)
             } else {
                 const DB_PRODUCTOS_NEW = DB_PRODUCTOS.filter(obj => obj.id != id)
                 await fs.writeFile(this.ruta, JSON.stringify(DB_PRODUCTOS_NEW, null, 2))
@@ -67,7 +69,7 @@ class ProductosClass {
     }
 
     //AGREGA UN PRODUCTO
-    async agregarProducto(producto) {
+    async agregarNuevo(producto) {
         try {
             let fecha = new Date()
             let fyh = fecha.toLocaleString()
@@ -90,11 +92,12 @@ class ProductosClass {
         }
     }
 
+    //  Crear carrito nuevo
     async crearCarrito(carrito) {
         try {
 
             carrito.productos = []
-            await this.agregarProducto(carrito)
+            await this.agregarNuevo(carrito)
             return carrito
         } catch (error) {
             console.log(error)
@@ -102,17 +105,22 @@ class ProductosClass {
         }
     }
 
+    // Agregar obj al carro
     async agregarProductoAlCarro(producto, id) {
         try {
             //fecha
             let fecha = new Date()
             let fyh = fecha.toLocaleString()
             //DATABASE CARRITOS
-            const DB_CARRITO_ENTERO = await this.traerProductos()
-            const DB_CARRITO = await this.productoPorId(id)
+            const DB_CARRITO_ENTERO = await this.getAll()
+            const DB_CARRITO = await this.getById(id)
             let ultimoProducto = DB_CARRITO.productos[DB_CARRITO.productos.length - 1]
-            producto.id = ultimoProducto.id + 1
             producto.fyh = fyh
+            if (ultimoProducto != undefined) {
+                producto.id = ultimoProducto.id + 1
+            } else {
+                producto.id = 1
+            }
             producto.codigo = Math.random().toString(36).substr(2, 18)
 
             DB_CARRITO.productos.push(producto)
@@ -129,11 +137,11 @@ class ProductosClass {
         }
     }
 
-
+    // Eliminar obj del carro
     async eliminarProdCarro(idCarro, idProducto) {
         try {
-            const DB_CARRITO = await this.productoPorId(idCarro)
-            const DB_CARRITO_ENTERO = await this.traerProductos()
+            const DB_CARRITO = await this.getById(idCarro)
+            const DB_CARRITO_ENTERO = await this.getAll()
             const carritoActualizado = DB_CARRITO.productos.filter(obj => obj.id != idProducto)
             console.log(carritoActualizado)
 
@@ -142,7 +150,8 @@ class ProductosClass {
             await fs.writeFile(this.ruta, JSON.stringify(DB_CARRITO_ENTERO))
 
         } catch (error) {
-
+            console.log(error)
+            throw new Error(error)
         }
 
     }

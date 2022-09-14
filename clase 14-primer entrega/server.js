@@ -3,13 +3,15 @@ let express = require('express');
 const morgan = require('morgan');
 //clases productos
 const ProductosClass = require('./src/productos');
-const objetos = new ProductosClass('./src/productos.json');
+const objetos = new ProductosClass('./src/database/productos.json');
 
 
 //Instancia de Server
 const app = express();
 const routerProductos = require("./src/routes/productos.routes");
-const routerCarrito = require("./src/routes/carrito.routes")
+const routerCarrito = require("./src/routes/carrito.routes");
+const routerIndex = require("./src/routes/index.routes")
+
 /* ---------------------- Middlewares ----------------------*/
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,25 +26,18 @@ app.set('views', './views');
 
 
 /* ---------------------- Rutas ----------------------*/
-app.use('/productos', routerProductos);
-// app.use("/api/carrito", routerCarrito)
+app.use("/", routerIndex)
+app.use('/api/productos', routerProductos);
 app.use('/api/carrito', routerCarrito)
 
-// app.get('/', (req, res) => {
-//     res.render('index')
-// });
-app.get('/', async (req, res) => {
-    const DB_PRODUCTOS = await objetos.traerProductos();
-    res.render('productos', { DB_PRODUCTOS });
-})
+
 
 
 
 //Errores GLobales
-app.use(function (err, req, res, next) {
-    res.status(err.status || 500).send("Error en el servidor");
+app.use((error, req, res, next) => {
+    res.status(error.status || 500).send({ error: { status: error.status || 500, message: error.message || 'Internal Server Error.' } })
 });
-
 
 
 
