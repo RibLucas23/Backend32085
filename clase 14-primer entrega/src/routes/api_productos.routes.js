@@ -1,5 +1,5 @@
 const express = require('express');
-const routerProductos = express.Router();
+const routerApiProductos = express.Router();
 // const productosJson = require("../productos.json");
 
 
@@ -12,20 +12,21 @@ const admin = true
 
 
 // Ver todos los productos
-routerProductos.get('/', async (req, res) => {
+routerApiProductos.get('/', async (req, res) => {
     const DB_PRODUCTOS = await objetos.getAll();
-    res.status(200).render('productos', { DB_PRODUCTOS });
+    res.status(200).json(DB_PRODUCTOS)
+    // res.status(200).render('productos', { DB_PRODUCTOS });
 })
 
 // Ver por id
-routerProductos.get('/:id', async (req, res) => {
+routerApiProductos.get('/:id', async (req, res) => {
     const producto = await objetos.getById(req.params.id);
     res.status(200).json(producto);
 })
 
 
 // Eliminar por id
-routerProductos.delete('/:id', async (req, res) => {
+routerApiProductos.delete('/:id', async (req, res) => {
     if (admin) {
         const DB_PRODUCTOS = await objetos.eliminar(req.params.id);
         res.status(200).json(DB_PRODUCTOS);
@@ -38,10 +39,11 @@ routerProductos.delete('/:id', async (req, res) => {
 
 
 // Agregar producto nuevo
-routerProductos.post('/', async (req, res) => {
+routerApiProductos.post('/', async (req, res) => {
     if (admin) {
         const DB_PRODUCTOS = await objetos.agregarNuevo(req.body);
-        res.status(201).redirect('/api/productos');
+        res.status(200).json(DB_PRODUCTOS)
+        // res.status(201).redirect('/api/productos');
     } else {
         res.status(400).render("error")
         throw new Error(error)
@@ -49,7 +51,7 @@ routerProductos.post('/', async (req, res) => {
 })
 
 // Actualizar producto existente
-routerProductos.put('/:id', async (req, res) => {
+routerApiProductos.put('/:id', async (req, res) => {
     if (admin) {
         const producto = await objetos.getById(req.params.id);
         const productoEditado = req.body;
@@ -63,4 +65,4 @@ routerProductos.put('/:id', async (req, res) => {
     }
 })
 
-module.exports = routerProductos;
+module.exports = routerApiProductos;

@@ -6,7 +6,7 @@ const objetos = new ProductosClass('./src/database/productos.json');
 
 // Vista Index con la lista de productos
 routerIndex.get('/', async (req, res) => {
-    const DB_PRODUCTOS = await objetos.traerProductos();
+    const DB_PRODUCTOS = await objetos.getAll();
     res.status(200).render('index', { DB_PRODUCTOS });
 })
 

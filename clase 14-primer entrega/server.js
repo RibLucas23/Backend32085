@@ -8,9 +8,11 @@ const objetos = new ProductosClass('./src/database/productos.json');
 
 //Instancia de Server
 const app = express();
-const routerProductos = require("./src/routes/productos.routes");
+const routerApiProductos = require("./src/routes/api_productos.routes");
 const routerCarrito = require("./src/routes/carrito.routes");
+//vistas
 const routerIndex = require("./src/routes/index.routes")
+const routerProductos_view = require("./src/routes/views/view_productos.routes")
 
 /* ---------------------- Middlewares ----------------------*/
 app.use(express.json());
@@ -27,7 +29,8 @@ app.set('views', './views');
 
 /* ---------------------- Rutas ----------------------*/
 app.use("/", routerIndex)
-app.use('/api/productos', routerProductos);
+app.use("/productos", routerProductos_view)
+app.use('/api/productos', routerApiProductos);
 app.use('/api/carrito', routerCarrito)
 
 

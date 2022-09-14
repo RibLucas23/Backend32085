@@ -12,19 +12,19 @@ routerCarrito.post("/", async (req, res) => {
 
 // Producto por id
 routerCarrito.get("/:id", async (req, res) => {
-    const DB_CARRITO = await carrito.productoPorId(req.params.id);
+    const DB_CARRITO = await carrito.getById(req.params.id);
     res.status(200).json(DB_CARRITO);
 })
 
 // Borrar carrito
 routerCarrito.delete("/:id", async (req, res) => {
-    const DB_CARRITO = await carrito.eliminarProducto(req.params.id)
+    const DB_CARRITO = await carrito.eliminar(req.params.id)
     res.status(200).json(DB_CARRITO);
 })
 
 // Ver contenido del carrito
 routerCarrito.get("/:id/productos", async (req, res) => {
-    const DB_CARRITO = await carrito.productoPorId(req.params.id);
+    const DB_CARRITO = await carrito.getById(req.params.id);
     res.status(200).json(DB_CARRITO.productos);
 })
 
