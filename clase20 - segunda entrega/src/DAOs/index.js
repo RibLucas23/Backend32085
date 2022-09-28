@@ -1,8 +1,16 @@
 let productosDaos
 let carritosDaos
-let PERS = "memoria"
-
+let PERS = "firebase"
 switch (PERS) {
+    //firebase
+    case "firebase":
+        const { default: ProductosDaosFirebase } = await import('./productos/ProductosDaosFirebase.js')
+        const { default: CarritosDAOsFirebase } = await import('./carritos/CarritosDAOs.Firebase.js')
+        productosDaos = new ProductosDaosFirebase()
+        carritosDaos = new CarritosDAOsFirebase()
+
+        break;
+
     //memoria
     case "memoria":
         const { default: ProductosDaosMemoria } = await import('./productos/ProductosDaosMemoria.js')
