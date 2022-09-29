@@ -1,4 +1,4 @@
-import fs from "fs"
+import fs from "fs/promises"
 
 class ContenedorFS {
     constructor(ruta) {
@@ -8,7 +8,6 @@ class ContenedorFS {
     //TRAE TODOS LOS OBJETOS DEL JSON
     async getAll() {
         try {
-            console.log(ruta)
 
             console.log(this.ruta)
             const DB_PRODUCTOS = await fs.readFile(this.ruta, 'utf-8')
