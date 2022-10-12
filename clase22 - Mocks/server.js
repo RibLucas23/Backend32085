@@ -63,18 +63,21 @@ io.on("connection", async (socket) => {
 
     //chat 
     const DB_MSJS = await msjDAOs.getAll();
-    const DB_MSJS_OBJETO = { ...DB_MSJS }
+    const DB_MSJS_OBJETO = { id: 123, ...DB_MSJS }
     // console.log(DB_MSJS)
     // console.log(DB_MSJS_OBJETO)
     //normalizr msjs
+
     const author = new schema.Entity('autores', {}, { idAttribute: 'ID' })
-    const msjs = new schema.Entity('mensajes', {
+
+    const msjs = new schema.Entity('mensaje', {
         autor: author
-    }, { idAttribute: 'MENSAJE' })
+    }, { idAttribute: 'id' })
+
     const msjsSchema = new schema.Entity('mensajes', {
-        autor: author,
         mensajes: [msjs]
-    });
+    }, { idAttribute: 'id' });
+
     // obj normalizado
     console.log(' ------------- OBJETO NORMALIZADO --------------- ')
     const msjsNormalizados = normalize(DB_MSJS_OBJETO, msjsSchema);
