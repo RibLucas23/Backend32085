@@ -113,21 +113,21 @@ app.get('/logout', (req, res) => {
     });
 });
 app.post('/privado', (req, res) => {
-    let user = req.session.user
-    // si usuario existe mostrar vista de despedida
-    if (user) {
-        req.session.destroy(err => {
-            if (err) {
-                res.json({ err });
-            } else {
-                res.render("logout", { user });
-            }
-        })
-        // si no redirecciona a login
-    } else {
-        res.redirect('/login')
-    };
+    const user = req.session.user;
+    // si usuario no existe redirecciona a login
+    if (!user) {
+        res.redirect('/login');
+        return; // acá hace falta return para cortar la ejecucion, porque redirect aparentemente no la termina
+    }
+    // si no, mostrar vista de despedida
+    req.session.destroy((err) => {
+        if (err) {
+            res.json({ err });
+        }
+        res.render('logout', { user });
+    });
 });
+
 
 app.get('/privado', auth, (req, res) => {
     let user = req.session.user
