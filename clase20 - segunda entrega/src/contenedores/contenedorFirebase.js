@@ -31,15 +31,16 @@ class ContenedorFirebase {
             let doc = this.colleccion.doc(`${id}`)
             let respuesta = await doc.get()
             respuesta = respuesta.data()
-            if (respuesta != undefined) {
-                return respuesta
+            if (!respuesta) {
+                const error = new Error(`no hay nada con  ID: ${id} `)
+                error.status = 404
+                throw error
             }
-            else {
-                return console.log("no hay nada con ese ID")
-            }
+            return respuesta
+
         } catch (error) {
             console.log(error)
-            throw new Error(error)
+            throw error
         }
     }
     // CREATE
@@ -61,23 +62,33 @@ class ContenedorFirebase {
     async update(id, objetoNuevo) {
         try {
             let doc = this.colleccion.doc(`${id}`)
+            if (!doc) {
+                const error = new Error(`no hay nada con  ID: ${id} `)
+                error.status = 404
+                throw error
+            }
             let res = await doc.update(objetoNuevo)
             console.log("producto actualizado")
             return res
         } catch (error) {
             console.log(error)
-            throw new Error(error)
+            throw error
         }
     }
     //REMOVE
     async remove(id) {
         try {
             let doc = this.colleccion.doc(`${id}`)
+            if (!doc) {
+                const error = new Error(`no hay nada con  ID: ${id} `)
+                error.status = 404
+                throw error
+            }
             let res = await doc.delete()
             return res
         } catch (error) {
             console.log(error)
-            throw new Error(error)
+            throw error
         }
     }
 

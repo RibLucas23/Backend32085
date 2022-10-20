@@ -30,6 +30,11 @@ class CarritosDAOsFirebase extends ContenedorFirebase {
         let fecha = new Date()
         fecha = fecha.toLocaleString()
         let carrito = await this.getById(id)
+        if (!carrito) {
+            const error = `no hay carrito con  ID: ${id} `
+            error.status = 404
+            throw new Error(error)
+        }
         producto = {
             ...producto,
             FECHA: fecha

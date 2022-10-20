@@ -39,6 +39,10 @@ class CarritoDaosMemoria extends ContenedorMemoria {
         let fecha = new Date()
         fecha = fecha.toLocaleString()
         let carrito = await this.getById(id)
+        if (!carrito) {
+            const error = `no hay carrito con  ID: ${id} `
+            throw new Error(error)
+        }
         producto = {
             ...producto,
             FECHA: fecha

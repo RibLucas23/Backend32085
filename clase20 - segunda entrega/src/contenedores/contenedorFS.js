@@ -24,12 +24,12 @@ class ContenedorFS {
         // console.log(DB_PRODUCTOS)
         try {
             const producto = await DB_PRODUCTOS.find(producto => producto.id == id)
-            if (producto != undefined) {
-                return producto
-            } else {
-                console.log(`No existe el objeto con id: ${id}`)
+            if (!producto) {
+                const error = `no hay nada con  ID: ${id} `
                 throw new Error(error)
             }
+            return producto
+
         }
         catch (error) {
             console.log(error)
@@ -42,14 +42,15 @@ class ContenedorFS {
         const DB_PRODUCTOS = await this.getAll()
         try {
             const obj = DB_PRODUCTOS.find(obj => obj.id == id)
-            if (obj == undefined) {
-                console.log(`No existe el objeto con id ${id}`)
+            if (!obj) {
+                const error = `no hay nada con  ID: ${id} `
                 throw new Error(error)
-            } else {
-                const DB_PRODUCTOS_NEW = DB_PRODUCTOS.filter(obj => obj.id != id)
-                await fs.writeFile(this.ruta, JSON.stringify(DB_PRODUCTOS_NEW, null, 2))
-                return obj, console.log(obj)
             }
+
+            const DB_PRODUCTOS_NEW = DB_PRODUCTOS.filter(obj => obj.id != id)
+            await fs.writeFile(this.ruta, JSON.stringify(DB_PRODUCTOS_NEW, null, 2))
+            return obj, console.log(obj)
+
         }
         catch (error) {
             console.log(error)

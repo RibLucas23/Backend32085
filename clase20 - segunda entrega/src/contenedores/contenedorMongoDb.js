@@ -25,15 +25,16 @@ class ContenedorMongoDb {
 
         try {
             const objeto = await this.coleccion.find({ _id: id })
-            if (objeto != undefined) {
-                return objeto
-            } else {
-                console.log(`No existe el objeto con id: ${id}`)
-                throw new Error(error)
+            if (!objeto) {
+                const error = new Error(`no hay nada con  ID: ${id} `)
+                error.status = 404
+                throw error
             }
+            return objeto
+
         }
         catch (error) {
-            console.log(error)
+
             throw new Error(error)
         }
     }
@@ -41,19 +42,19 @@ class ContenedorMongoDb {
     async update(id, objeto) {
         try {
             let objViejo = await this.coleccion.find({ _id: id })
-            if (objViejo != undefined) {
-                // objeto._id = objViejo._id
-                await this.coleccion.replaceOne({ "_id": id }, objeto)
-                console.log("Actualizado con exito!")
+            if (!objViejo) {
+                const error = new Error(`no hay nada con  ID: ${id} `)
+                error.status = 404
+                throw error
             }
-            else {
-                console.log(`No existe el objeto con id: ${id}`)
-                throw new Error(error)
-            }
+
+            await this.coleccion.replaceOne({ "_id": id }, objeto)
+            console.log("Actualizado con exito!")
+
 
         } catch (error) {
             console.log(error)
-            throw new Error(error)
+            throw error
         }
 
     }

@@ -18,10 +18,15 @@ class ContenedorMemoria {
         try {
             let DB = await this.contenido
             let objeto = DB.find(objeto => objeto.ID == id)
+            if (!objeto) {
+                const error = new Error(`no hay nada con  ID: ${id} `)
+                error.status = 404
+                throw error
+            }
             return objeto
         } catch (error) {
             console.log(error)
-            throw new Error(error)
+            throw error
         }
     }
 
@@ -37,11 +42,16 @@ class ContenedorMemoria {
     async update(id, objetoNuevo) {
         try {
             let index = this.contenido.findIndex(objeto => objeto.id == id)
+            if (!index) {
+                const error = new Error(`no hay nada con  ID: ${id} `)
+                error.status = 404
+                throw error
+            }
             this.contenido[index] = objetoNuevo
             return this.contenido
         } catch (error) {
             console.log(error)
-            throw new Error(error)
+            throw error
         }
     }
     async removeAll() {
