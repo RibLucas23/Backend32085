@@ -1,0 +1,44 @@
+div(class="jumbotron")
+            h1(style="color:blue;") Centro de Mensajes
+            br
+            form
+            
+                div(class="form-group")
+                    label(for="EMAIL")
+                        b Email
+                    input(id="EMAIL" class="form-control" type="email" name="EMAIL" onchange="")
+                
+                div(class="form-group")
+                    label(for="NOMBRE")
+                    b Nombre
+                    input(id="NOMBRE" class="form-control" type="text" name="NOMBRE")
+                
+                div(class="form-group")
+                    label( for="APELLIDO")
+                    b Apellido
+                    input(id="APELLIDO" class="form-control" type="text" name="APELLIDO")
+
+                div(class="form-group")
+                    label( for="EDAD")
+                    b Edad
+                    input(id="EDAD" class="form-control" type="number" name="EDAD")
+                
+                div(class="form-group")
+                    label( for="NICK")
+                    b Nickname
+                    input(id="NICK" class="form-control" type="text" name="NICK")
+                
+                div(class="form-group")
+                    label( for="AVATAR")
+                    b Aavatar url
+                    input(id="AVATAR" class="form-control" type="text" name="AVATAR")
+                div(class="form-group")
+                    label( for="MENSAJE")
+                    b Mensaje
+                    input(id="MENSAJE" class="form-control" type="text" name="MENSAJE")
+                
+                
+                button(class="btn btn-success mt-3 mb-5" onclick='enviarMensaje()') Enviar
+            hr
+            #historial
+                // aqui se renderizan los mensajes recibidos por parte del server
