@@ -1,0 +1,23 @@
+<!-- Tabla -->
+        div
+            h2( style="color:crimson;") Lista de Productos
+
+            if info
+                div( class="table-responsive")
+                    table( class="table table-dark")
+                        tr( style="color: yellow;")
+                            th Argumentos de entrada
+                            th Sistema operativo
+                            th Version de node
+                            th Memoria total reservada
+                            th Path de ejecuccion
+                            th Process Id
+                        tr
+                            td=info.arg
+                            td=info.sistem
+                            td=info.version
+                            td=info.memory
+                            td=info.path
+                            td=info.processId
+            else 
+                h3(class= "alert alert-danger") No hay datos            
