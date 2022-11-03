@@ -5,15 +5,19 @@ const apiRouter = Router()
 // Fork
 import { fork } from 'child_process';
 
-const forkedProcess = fork('../utils/forkAction.js')
+const forkedProcess = fork('./src/utils/forkAction.js')
 
 
 // // Ver todos los carritos
 apiRouter.get('/randoms', (req, res) => {
-    forkedProcess.send('INICIA');
-    forkedProcess.on('message', msg => {
+    let num = req.query.num
+    if (!req.query.num) {
+        num = 100000000
+    }
+    forkedProcess.send(num);
+    forkedProcess.on('message', numero => {
         console.log('mensaje desde el procesos secundario:');
-        console.log(msg);
+        console.log(numero);
     });
     res.send('Sometido en segundo plano');
 })

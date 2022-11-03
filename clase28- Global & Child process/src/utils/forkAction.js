@@ -1,16 +1,18 @@
-export function sumar() {
-    let suma = 0;
-    for (let i = 0; i < 5e9; i++) {
-        suma += i;
-    }
-    return suma;
-}
 
-process.on('message', msg => {
+
+
+
+
+process.on('message', numero => {
     console.log('mensaje desde el procesos principal:\n');
-    console.log(msg);
+    console.log(numero);
+    for (let i = 0; i < numero; i++) {
+        let randomNum = Math.random() * numero
+        process.send(`resultado en segundo plano ${randomNum}`)
+        return randomNum
+    }
+    // let randomNum = Math.random() * numero
 
-    const suma = sumar()
-    process.send(`resultado de suma en segundo plano ${suma}`)
+
 });
 
