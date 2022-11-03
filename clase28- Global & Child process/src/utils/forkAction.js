@@ -12,7 +12,7 @@ process.on('message', numero => {
         numeros.push(randomNum)
 
     }
-    process.send(`resultado en segundo plano ${numeros}`)
+    process.send(numeros)
     // let randomNum = Math.random() * numero
 
 
