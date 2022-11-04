@@ -1,0 +1,8 @@
+2022/11/04 10:50:31 [emerg] 8788#22180: invalid URL prefix in C:\Users\lucas\Downloads\nginx-1.23.2\nginx-1.23.2/conf/nginx.conf:34
+2022/11/04 10:50:34 [emerg] 25064#20824: invalid URL prefix in C:\Users\lucas\Downloads\nginx-1.23.2\nginx-1.23.2/conf/nginx.conf:34
+2022/11/04 10:58:29 [emerg] 25516#25096: invalid URL prefix in C:\Users\lucas\Downloads\nginx-1.23.2\nginx-1.23.2/conf/nginx.conf:34
+2022/11/04 11:37:24 [emerg] 23632#21668: invalid URL prefix in C:\Users\lucas\Downloads\nginx-1.23.2\nginx-1.23.2/conf/nginx.conf:34
+2022/11/04 11:37:44 [emerg] 17328#15272: invalid URL prefix in C:\Users\lucas\Downloads\nginx-1.23.2\nginx-1.23.2/conf/nginx.conf:34
+2022/11/04 11:39:01 [emerg] 17756#25460: invalid URL prefix in D:\programacion\BACKEND\clase30- Fork y Cluster\nginx-1.23.2/conf/nginx.conf:34
+2022/11/04 11:39:05 [emerg] 10412#14816: invalid URL prefix in D:\programacion\BACKEND\clase30- Fork y Cluster\nginx-1.23.2/conf/nginx.conf:34
+2022/11/04 13:32:04 [emerg] 18560#22640: invalid URL prefix in D:\programacion\BACKEND\clase30- Fork y Cluster\nginx-1.23.2/conf/nginx.conf:35

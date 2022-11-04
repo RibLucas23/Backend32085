@@ -1,0 +1,16 @@
+.container.my-5
+  .jumbotron
+    h1 REGISTRO
+    br
+    form.form(action='/registro' method='post' role='form' autocomplete='off')
+      .form-group
+        input#nombre.form-control(name='nombre' placeholder='nombre' type='text' required='')
+      .form-group
+        input#password.form-control(name='password' placeholder='password' type='password' required='')
+      .form-group
+        input#direccion.form-control(name='direccion' placeholder='direccion' type='text' required='')
+      .form-group
+        input.btn.btn-success.my-3(type='submit' value='Register')
+    hr
+    .text-left
+      button.btn.btn-success.my-3(onclick="location.href = '/login'") Ir a Login

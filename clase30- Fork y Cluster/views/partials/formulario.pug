@@ -1,0 +1,23 @@
+
+<!-- Formulario -->
+        div(class="jumbotron")
+            h1(style="color:blue;") Ingrese datos
+            br
+            form(action="/productos" method="post")
+                div(class="form-group")
+                    label(for="title")
+                        b Title
+                    input(id="title" class="form-control" type="text" name="title" onchange="")
+                
+                div(class="form-group")
+                    label(for="price")
+                    b price
+                    input(id="price" class="form-control" type="text" name="price")
+                
+                div(class="form-group")
+                    label( for="thumbnail")
+                    b Image
+                    input(id="thumbnail" class="form-control" type="text" name="thumbnail")
+                
+                button(class="btn btn-success mt-3 mb-5") Enviar
+            
